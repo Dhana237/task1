@@ -1,0 +1,23 @@
+<div class="login">
+  <form [formGroup]="loginPage">
+    <div class="container">
+      <h1>LOGIN PAGE</h1>
+
+      <div class="uname">
+        <label for="">User Name</label>
+        <span *ngIf="username && username.invalid">UserName is Invalid</span>
+        <input type="text" formControlName="username" [(ngModel)]="UserName" 
+        name="UserName"/>
+      </div>
+      <div class="passw">
+        <label for="">Password</label>
+        <span *ngIf="password && password.invalid">Password is Invalid</span>
+        <input type="password" formControlName="password" [(ngModel)]="PassWord" 
+        name="PassWord"/>
+      </div>
+      <div class="btn">
+        <button type="submit" (click)="getIn()">Login</button>
+      </div>
+    </div>
+  </form>
+</div>
