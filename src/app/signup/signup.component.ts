@@ -5,26 +5,32 @@ import { Router } from '@angular/router';
 import { AuthService } from '../auth.service';
 
 @Component({
-  selector: 'app-login-page',
+  selector: 'app-signup',
   standalone: true,
   imports: [FormsModule,ReactiveFormsModule,CommonModule],
-  templateUrl: './login-page.component.html',
-  styleUrl: './login-page.component.css'
+  templateUrl: './signup.component.html',
+  styleUrl: './signup.component.css'
 })
-export class LoginPageComponent {
+export class SignupComponent {
+  
   UserName:any
+  Email:any
   PassWord:any
   authService= inject(AuthService)
   fB= inject (FormBuilder)
-loginPage= this.fB.nonNullable.group({
+signinPage= this.fB.nonNullable.group({
     username: ['',Validators.minLength(4)],
-    password:['',Validators.minLength(5)]
+    email: ['',Validators.minLength(5)],
+    password:['',Validators.minLength(6)]
   })
   get username(){
-    return this.loginPage.get('username')
+    return this.signinPage.get('username')
+  }
+  get email(){
+    return this.signinPage.get('email')
   }
   get password(){
-    return this.loginPage.get('password')
+    return this.signinPage.get('password')
   }
 
 
@@ -32,16 +38,11 @@ loginPage= this.fB.nonNullable.group({
   }
   errorMessage:string | null= null
   getIn():void{
-    const rawForm = this.loginPage.getRawValue()
-    this.authService.login(rawForm.username,rawForm.password)
-    .subscribe({
-      next:()=>{
-        this.router.navigateByUrl('/Home');
-      },
-      error:(err)=>{
-        this.errorMessage= err.code
-      }
-    })
+    const rawForm = this.signinPage.getRawValue()
+    this.authService.singnup(rawForm.email,rawForm.username,rawForm.password)
+    .subscribe(()=>{
+     this.router.navigateByUrl('/Home');
+      })
    
   }
   

@@ -1,11 +1,14 @@
-<div class="login">
-  <form [formGroup]="loginPage">
+@if (errorMessage) {
+  <div>{{errorMessage}}</div>
+}
+<form [formGroup]="loginPage">
+    <div class="login">
     <div class="container">
       <h1>LOGIN PAGE</h1>
 
       <div class="uname">
-        <label for="">User Name</label>
-        <span *ngIf="username && username.invalid">UserName is Invalid</span>
+        <label for="">Email</label>
+        <span *ngIf="username && username.invalid">Email is Invalid</span>
         <input type="text" formControlName="username" [(ngModel)]="UserName" 
         name="UserName"/>
       </div>
@@ -18,6 +21,7 @@
       <div class="btn">
         <button type="submit" (click)="getIn()">Login</button>
       </div>
+      <div>Create new account <a href="/Signup"> Click me</a></div>
     </div>
+  </div>
   </form>
-</div>

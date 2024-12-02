@@ -1,0 +1,35 @@
+@if (errorMessage) {
+  <div>{{errorMessage}}</div>
+}
+<div class="signin">
+    <form [formGroup]="signinPage">
+      <div class="container">
+        <h1>SIGNIN PAGE</h1>
+  
+        <div class="uname">
+          <label for="">UserName</label>
+          <span *ngIf="username && username.invalid">UserName is Invalid</span>
+          <input type="text" formControlName="username" [(ngModel)]="UserName" 
+          name="UserName"/>
+        </div>
+        <div class="uemail">
+          <label for="">Email</label>
+          <span *ngIf="email && email.invalid">Email is Invalid</span>
+          <input type="text" formControlName="email" [(ngModel)]="Email" 
+          name="Email"/>
+        </div>
+        <div class="passw">
+          <label for="">Password</label>
+          <span *ngIf="password && password.invalid">Password is Invalid</span>
+          <input type="password" formControlName="password" [(ngModel)]="PassWord" 
+          name="PassWord"/>
+        </div>
+
+        <div class="btn">
+          <button type="submit" (click)="getIn()">SignIn</button>
+        </div>
+        <div class="redirect">Already have an account <a href="/Login"> Click me </a></div>
+      </div>
+    </form>
+  </div>
+  

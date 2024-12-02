@@ -2,5 +2,9 @@
     <div class="nav-menu"><a routerLink='/Home' routerLinkActive="Active" >Home</a></div>
     <div class="nav-menu"><a routerLink='Add' routerLinkActive="Active">Add</a></div>
     <div class="nav-menu"><a routerLink='View' routerLinkActive="Active">View</a></div>
+    @if (authService.currentUser()) {<div class="nav-menu"><a 
+        (click)="logOut()"
+        routerLinkActive="Active">Log out</a></div>}
+    
 </div>
 <router-outlet></router-outlet>
