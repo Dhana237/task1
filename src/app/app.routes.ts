@@ -1,20 +1,16 @@
 import { Routes } from '@angular/router';
-import { AddComponent } from './add/add.component';
-import { ViewComponent } from './view/view.component';
-import { LoginPageComponent } from './login-page/login-page.component';
 import { NavbarComponent } from './navbar/navbar.component';
-import { SignupComponent } from './signup/signup.component';
 import { AuthguardService } from './authguard.service';
 
 export const routes: Routes = [
     {path:'',redirectTo:'Login',pathMatch:'full'},
     {path:'Home',component:NavbarComponent,
         children:[
-            {path:'Add', component:AddComponent},
-            {path:'View', component:ViewComponent},
+            {path:'Add',loadComponent:()=>import('./add/add.component').then(m=>m.AddComponent)},
+            {path:'View', loadComponent:()=>import('./view/view.component').then(m=>m.ViewComponent)},
         ],
         canActivate:[AuthguardService]
          },
-{path:'Login',component:LoginPageComponent},
-{path:'Signup',component:SignupComponent}
+{path:'Login',loadComponent:()=>import('./login-page/login-page.component').then(m=>m.LoginPageComponent)},
+{path:'Signup',loadComponent:()=>import('./signup/signup.component').then(m=>m.SignupComponent)},
 ];
